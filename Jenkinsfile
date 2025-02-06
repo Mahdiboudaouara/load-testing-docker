@@ -4,6 +4,11 @@ pipeline{
         DOCKER_IMAGE="mahdiboudaouara101/my-flask-app:v1.0 "
     }
     stages{
+        stage("verify docker installed "){
+            steps{
+                sh 'docker --version'
+            }
+        }
         stage("build"){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
